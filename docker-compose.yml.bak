@@ -72,8 +72,6 @@ services:
       retries: 40
       timeout: 5s
       #start_period: 2m
-    volumes:
-      - ./rems/config.edn:/opt/rems/config.edn
   molgenis:
     image: umcg/molgenis
     env_file: ./.env
@@ -102,10 +100,8 @@ services:
       - MOLGENIS_POSTGRES_PASS=molgenis
       - MOLGENIS_OIDC_CLIENT_ID=lportalclient
       - MOLGENIS_OIDC_CLIENT_SECRET=kYBU698XaEyTqPQAtKeiQoN5KXLgrxF8
-        #- MOLGENIS_OIDC_DISCOVERY_URI=http://keycloak:9000/realms/lportal/.well-known/openid-configuration
-      - MOLGENIS_OIDC_DISCOVERY_URI=https://kc.portal.gdi.biodata.pt/realms/lportal/.well-known/openid-configuration
-        #- MOLGENIS_OIDC_CALLBACK_URL=http://localhost:8080
-      - MOLGENIS_OIDC_CALLBACK_URL=https://portugal.gdi.biodata.pt
+      - MOLGENIS_OIDC_DISCOVERY_URI=http://keycloak:9000/realms/lportal/.well-known/openid-configuration
+      - MOLGENIS_OIDC_CALLBACK_URL=http://localhost:8080
     depends_on:
       postgres:
         condition: service_healthy
